@@ -14,8 +14,15 @@ class CreateSeosTable extends Migration
     public function up()
     {
         Schema::create('seos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('metadatos');
+            $table->text('descri');
+            $table->integer('numero');
+            //declaracion de llaves foraneas
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
