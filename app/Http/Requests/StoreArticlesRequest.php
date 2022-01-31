@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreArticlesRequest extends FormRequest
+class categoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreArticlesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,19 @@ class StoreArticlesRequest extends FormRequest
     public function rules()
     {
         return [
+
+            'name' => 'required|min:4|max:10'
+
             //
+        ];
+    }
+    /* Funcion para messages de alerta */
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre debe ser un campo requerido',
+            'name.min' => 'El nombre debe tener minimo cuatro caracteres',
+            'name.max' => 'El nombre debe tener maximo diez caracteres',
         ];
     }
 }
